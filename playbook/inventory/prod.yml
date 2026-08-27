@@ -1,9 +1,18 @@
----
-  el:
-    hosts:
-      centos7:
-        ansible_connection: docker
-  deb:
-    hosts:
-      ubuntu:
-        ansible_connection: docker
+all:
+  children:
+    deb:
+      hosts:
+        ubuntu_test:
+          ansible_connection: docker
+          ansible_user: root
+          ansible_remote_tmp: /tmp
+    el:
+      hosts:
+        centos_test:
+          ansible_connection: docker
+          ansible_user: root
+          ansible_remote_tmp: /tmp
+    local:
+      hosts:
+        localhost:
+          ansible_connection: local
